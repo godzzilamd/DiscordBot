@@ -19,11 +19,11 @@ function here(me)
 
 function here1(me1)
 {
-    me1 = "\n" + me1;
+    me1 = "\r\n" + me1;
     fs.appendFile("c://Musor/Mytest.txt", me1, (err) => 
     {  
         if (err) throw err;
-        console.log('The lyrics were updated!');
+      //  console.log('The lyrics were updated!');
     });
 };
 
@@ -37,13 +37,21 @@ bot.on('ready', () => {
 
 bot.on('message', (message) =>
 {
-    const swearWords = ["Привет", "привет", "Салют", "салют", "Здаова", "здарова", "кусь", "дароу", "hi", "hello", "Hi", "Hello", "shalom", "privet", "здрасти"];
+    const swearWords = ["Привет", "привет", "Салют", "салют", "Здаова", "здарова", "кусь", "дароу", "hi", "hello", "Hi", "Hello", "shalom", "privet", "здрасти" ,"Sieg Heil"];
     if( swearWords.some(word => message.content.includes(word)) && message.author.id != "471260169465233409") 
     {
     message.reply("Салютыыыыы!!!");
     me1 = "Was wrote a message by " + message.author.username + ":::::: " + time;
     here1(me1);
     //console.log("Was wrote a message by " + message.author.username + ":::::: ${time}");
+    }
+
+    const swearWords2 = ["ББ" ,"бб" ,"пока" ,"bb" ,"Bb"];
+    if( swearWords2.some(word => message.content.includes(word)) && message.author.id != "471260169465233409") 
+    {
+    message.reply("бб :wave:");
+    me1 = "Was wrote a message by " + message.author.username + ":::::: " + time;
+    here1(me1);
     }
 
     if (message.content == "!кв" || message.content == "!cv" || message.content == "!КВ" || message.content == "!CV")
@@ -73,8 +81,9 @@ bot.on('message', (message) =>
                     return;
 
                 }
-
-                console.log("\nHave been deleted" + last + " rows by " + message.author.username.toString());
+                me1 = "Have been deleted " + last + " rows by " + message.author.username;
+               // console.log("\nHave been deleted" + last + " rows by " + message.author.username);
+                here1(me1);
 
                 message.channel.bulkDelete(last)
                     .catch(error => message.channel.send('Error: ${error}'));
@@ -116,6 +125,8 @@ bot.on("presenceUpdate", (oldMember, newMember) =>
     let time = new Date(date)
     if (oldMember.presence.status !== newMember.presence.status)
     {
-        console.log(`${newMember.user.username} is now ${newMember.presence.status} :::::: ${time}`);
+        me1 = newMember.user.username + " is now " + newMember.presence.status + " :::::: " + time;
+        here1(me1);
+     //   console.log(`${newMember.user.username} is now ${newMember.presence.status} :::::: ${time}`);
     }
 });
