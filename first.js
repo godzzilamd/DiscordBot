@@ -27,7 +27,7 @@ function here1(me1)
     });
 };
 
-bot.login("NDcxMjYwMTY5NDY1MjMzNDA5.DjnVSQ.jAA407R02psReLloTRAta5IezbQ");
+bot.login("My token");
 
 bot.on('ready', () => {
     me = "Bot Launched ...";
